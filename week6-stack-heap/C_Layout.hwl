@@ -1,0 +1,14 @@
+OPEN source 0 0 60 75
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN register 60 0 40 25
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 60 0 40 84
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0xFC0
+OPEN data 0 74 60 26
+Data < attributes SCOPE local,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN command 60 84 40 16
+Command < attributes CACHESIZE 1000
+bckcolor 50331647
+font 'Courier New' 20 BLACK
+AUTOSIZE on
+ACTIVATE "Register" "Data" "Command" "Source" "Memory"

@@ -1,0 +1,14 @@
+/* Define an identifier a, which is located at address 0x210*/ 
+/* This identifier is 1 Byte wide.*/
+def a = TargetObject.#1000.B;
+/* After 200 000 cycles have expired, repeat 50 time */
+/* the code sequence specified between the keywords */
+/* PERIODICAl and END. */
+PERIODICAL 500000, 5:
+    150000 a = 128; /* After 50 000 cycles, write 128 at address 0x210. */
+    350000 a = 4;   /* After 150 000 cycles, write 4 at address 0x210. */
+END
+
+3000000 RAISE 25, 3, "test_interrupt";
+
+100000000 a = 200; /* After 10 000 000 cycles, write 0 at address 0x210. */ 

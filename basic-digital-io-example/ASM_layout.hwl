@@ -1,0 +1,25 @@
+OPEN source 0 0 60 42
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN assembly 60 0 40 30
+Assembly < attributes ADR on,CODE off,ABSADR on,SYMB off,FORMAT Hex,FREEZE off,TOPPC 0x4000
+OPEN procedure 60 60 40 17
+Procedure < attributes VALUES on,TYPES off
+OPEN register 60 30 40 30
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 60 77 40 23
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0x1000
+OPEN data 0 42 60 28
+Data < attributes SCOPE global,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN command 0 70 60 30
+Command < attributes CACHESIZE 1000
+OPEN Visualizationtool 60 41 36 50
+VisualizationTool< Attributes [swRefresh="3",refCycles="5000"]
+VisualizationTool< LoadInstrument Seg7[BoundX="104",BoundY="99",BoundH="123",BoundW="86",Port="0x1000"]
+VisualizationTool< LoadInstrument DILSwitch[BoundX="230",BoundY="103",BoundH="118",BoundW="205",Port="0x260",display1="1"]
+VisualizationTool< ResetVT Undo
+OPEN Stimulation 11 38 43 54
+Stimulation < attributes CACHESIZE 1000
+bckcolor 50331647
+font 'Courier New' 9 BLACK
+AUTOSIZE on
+ACTIVATE "Memory" "Register" "Command" "Procedure" "Assembly" "Data" "Source" "VisualizationTool" "Stimulation"
