@@ -1,5 +1,6 @@
 #include "shape.h"
 
+#include "derivative.h"      /* derivative-specific definitions */
 #include <stdio.h>
 
 

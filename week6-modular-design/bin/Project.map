@@ -37,7 +37,7 @@ Entry point: 0xC000 (_Startup)
 _startupData is allocated at 0xC00B and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1100     2035
+  _Range   pZeroOut       0x2000     2035
   _Copy    *toCopyDownBeg 0xC646
 } _startupData;
 
@@ -52,8 +52,8 @@ Section Name                    Size  Type     From       To       Segment
 NON_BANKED                      1081     R     0xC20D     0xC645   ROM_C000
 .copy                             29     R     0xC646     0xC662   ROM_C000
 .text                           3609     R   0x308000   0x308E18   PAGE_30
-.stack                           256   R/W     0x1000     0x10FF   RAM
-.data                             24   R/W     0x1100     0x1117   RAM
+.stack                          4096   R/W     0x1000     0x1FFF   RAM
+.data                             24   R/W     0x2000     0x2017   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -395,13 +395,13 @@ NON_BANKED                      1081     R     0xC20D     0xC645   ROM_C000
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg338
 .abs_section_2ae                   2   N/I      0x2AE      0x2AF   .absSeg339
 .abs_section_2be                   2   N/I      0x2BE      0x2BF   .absSeg340
-.bss                              11   R/W     0x1118     0x1122   RAM
-HEAP_SEGMENT                    2000   R/W     0x1123     0x18F2   RAM
+.bss                              11   R/W     0x2018     0x2022   RAM
+HEAP_SEGMENT                    2000   R/W     0x2023     0x27F2   RAM
 .vectSeg341_vect                   2     R     0xFFFE     0xFFFF   .vectSeg341
 
 Summary of section sizes per section type:
 READ_ONLY (R):        147E (dec:     5246)
-READ_WRITE (R/W):      8F3 (dec:     2291)
+READ_WRITE (R/W):     17F3 (dec:     6131)
 NO_INIT (N/I):         190 (dec:      400)
 
 *********************************************************************************************
@@ -771,12 +771,12 @@ MODULE:                 -- Start12.c.o --
 - VARIABLES:
      _startupData                              C00B       6       6       3   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          1100       0       0       1               
+     __SEG_END_SSTACK                          2000       0       0       1               
 MODULE:                 -- HEAP.C.o (ansib.lib) --
 - PROCEDURES:
      _heapcrash_                             30818E       C      12       2   .text       
 - VARIABLES:
-     _heap_                                    1123     7D0    2000       1   HEAP_SEGMENT
+     _heap_                                    2023     7D0    2000       1   HEAP_SEGMENT
 MODULE:                 -- PRINTF.C.o (ansib.lib) --
 - PROCEDURES:
      Ten                                     30819A      AC     172       5   .text       
@@ -790,13 +790,13 @@ MODULE:                 -- PRINTF.C.o (ansib.lib) --
      pow8                                      C05D      2C      44       4   .rodata     
      fpow10                                    C089      30      48       1   .rodata     
      fpow_10                                   C0B9      30      48       1   .rodata     
-     pbuf                                      1118       7       7      16   .bss        
+     pbuf                                      2018       7       7      16   .bss        
 MODULE:                 -- ALLOC.C.o (ansib.lib) --
 - PROCEDURES:
      malloc                                  308BC3      A7     167       2   .text       
 - VARIABLES:
-     heap_end                                  111F       2       2       2   .bss        
-     free_ptr                                  1121       2       2       6   .bss        
+     heap_end                                  201F       2       2       2   .bss        
+     free_ptr                                  2021       2       2       6   .bss        
 MODULE:                 -- FADD.C.o (ansib.lib) --
 - PROCEDURES:
      F_ADDKL                                   C20D      67     103       1   NON_BANKED  
@@ -873,8 +873,8 @@ MODULE:                 -- serial.c.o --
      SerialOutputChar                        308D3E      11      17       2   .text       
      SerialOutputString                      308D4F      19      25       6   .text       
 - VARIABLES:
-     SCI1                                      1100       C      12       3   .data       
-     SCI0                                      110C       C      12       2   .data       
+     SCI1                                      2000       C      12       3   .data       
+     SCI0                                      200C       C      12       2   .data       
 MODULE:                 -- shape.c.o --
 - PROCEDURES:
      generate_shape                          308D68      27      39       4   .text       
@@ -907,7 +907,7 @@ MODULE STATISTIC
   movement.c.o                                 0    146      0
   serial.c.o                                  24    108      0
   shape.c.o                                    0    177    226
-  other                                      256     12     29
+  other                                     4096     12     29
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
@@ -1964,12 +1964,12 @@ OBJECT LIST SORTED BY ADDRESS
      _CAN4TXDLR                                 2BC       1       1       0   .abs_section_2bc
      _CAN4TXTBPR                                2BD       1       1       0   .abs_section_2bd
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
-     SCI1                                      1100       C      12       3   .data       
-     SCI0                                      110C       C      12       2   .data       
-     pbuf                                      1118       7       7      16   .bss        
-     heap_end                                  111F       2       2       2   .bss        
-     free_ptr                                  1121       2       2       6   .bss        
-     _heap_                                    1123     7D0    2000       1   HEAP_SEGMENT
+     SCI1                                      2000       C      12       3   .data       
+     SCI0                                      200C       C      12       2   .data       
+     pbuf                                      2018       7       7      16   .bss        
+     heap_end                                  201F       2       2       2   .bss        
+     free_ptr                                  2021       2       2       6   .bss        
+     _heap_                                    2023     7D0    2000       1   HEAP_SEGMENT
      _Startup                                  C000       B      11       0   .init       
      pow10                                     C015      28      40       6   .rodata     
      pow16                                     C03D      20      32       4   .rodata     
@@ -2077,14 +2077,14 @@ COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
 ------- ROM-ADDRESS: 0xC646 ---- SIZE       4 ---
 Filling bytes inserted
- 00171101
-------- ROM-ADDRESS: 0xC64A ---- RAM-ADDRESS: 0x1101 ---- SIZE      11 ---
+ 00172001
+------- ROM-ADDRESS: 0xC64A ---- RAM-ADDRESS: 0x2001 ---- SIZE      11 ---
 Name of initialized Object : SCI1:1
  D000D100D2 00D300D700 D4
 ------- ROM-ADDRESS: 0xC655 ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xC656 ---- RAM-ADDRESS: 0x110D ---- SIZE      11 ---
+------- ROM-ADDRESS: 0xC656 ---- RAM-ADDRESS: 0x200D ---- SIZE      11 ---
 Name of initialized Object : SCI0:1
  C800C900CA 00CB00CF00 CC
 ------- ROM-ADDRESS: 0xC661 ---- SIZE       2 ---
