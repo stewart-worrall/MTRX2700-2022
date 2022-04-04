@@ -42,11 +42,12 @@ SlowNotes       DC.W   $2DC8, $16E4, $0b72, $05b9
             ORG   ROMStart
 
 
+USING_HARDWARE equ 1 
+
 Entry:
 _Startup:
             ; remap the RAM &amp; EEPROM here. See EB386.pdf
- ;ifdef _HCS12_SERIALMON
- ifdef _NO_HARDWARE
+ ifdef USING_HARDWARE
             ; set registers at $0000
             CLR   $11                  ; INITRG= $0
             ; set ram to end at $3FFF
@@ -92,10 +93,10 @@ mainLoop:
             movw        #0, Period    ; initalise the period to a default value
 
             ; select channel 5 for Output compare
-            bset        TIOS, TIOS_IOS5   
+            movb        #mTIOS_IOS5, TIOS
             
             ; enable timers  #$90 does not req Flag cleared
-            bset        TSCR1, mTSCR1_TEN 
+            movb        #mTSCR1_TEN, TSCR1
             
             ; prescaler  div 128 (bits set to 111)
             movb        #mTSCR2_PR0 | mTSCR2_PR1 | mTSCR2_PR2, TSCR2    

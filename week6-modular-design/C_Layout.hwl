@@ -1,0 +1,24 @@
+OPEN source 0 0 100 49
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN procedure 60 69 40 31
+Procedure < attributes VALUES on,TYPES off
+OPEN register 60 48 40 21
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 60 69 40 16
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0x80
+OPEN data 0 56 60 22
+Data:1 < attributes SCOPE global,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN data 0 78 60 22
+Data:2 < attributes SCOPE local,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN command 60 85 40 15
+Command < attributes CACHESIZE 1000
+OPEN Terminal 0 48 60 26
+Terminal:1 < attributes CACHESIZE 1000
+Terminal:1 < attributes SCI_DEFAULT_TEXT "Virtual SCI",SCI_CONNECTION 0,1,SCI_CONNECTION 1,0,SCI_CONNECTION 1,3,SCI_CONNECTION 3,1,SCI_PORT COM1,SCI_BAUD  9600,SCI_SHOW_PROTOCOL OFF,SCI_VIRTUAL_IN "Sci1.SerialOutput",SCI_VIRTUAL_OUT "Sci1.SerialInput",SCI_FILENAME_IN "",SCI_FILENAME_OUT ""
+OPEN Terminal 0 74 60 26
+Terminal:2 < attributes CACHESIZE 1000
+Terminal:2 < attributes SCI_DEFAULT_TEXT "Virtual SCI",SCI_CONNECTION 0,1,SCI_CONNECTION 1,0,SCI_CONNECTION 1,3,SCI_CONNECTION 3,1,SCI_PORT COM1,SCI_BAUD  9600,SCI_SHOW_PROTOCOL OFF,SCI_VIRTUAL_IN "Sci0.SerialOutput",SCI_VIRTUAL_OUT "Sci0.SerialInput",SCI_FILENAME_IN "",SCI_FILENAME_OUT ""
+bckcolor 50331647
+font 'Courier New' 20 BLACK
+AUTOSIZE on
+ACTIVATE "Data:1" "Command" "Memory" "Register" "Data:2" "Terminal:1" "Terminal:2" "Source" "Procedure"

@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\swor8318\Documents\stack-heap\bin\Project.abs"
+PROGRAM "C:\Users\Stewart Worrall\Documents\MTRX2700-2022\week6-stack-heap\bin\Project.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -26,7 +26,7 @@ Entry point: 0xC000 (_Startup)
 _startupData is allocated at 0xC00B and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x2000     2004
+  _Range   pZeroOut       0x1100     2004
   _Copy    *toCopyDownBeg 0xC077
 } _startupData;
 
@@ -39,7 +39,7 @@ Section Name                    Size  Type     From       To       Segment
 .rodata1                          98     R     0xC015     0xC076   ROM_C000
 .copy                              2     R     0xC077     0xC078   ROM_C000
 .text                            449     R   0x308000   0x3081C0   PAGE_30
-.stack                          4096   R/W     0x1000     0x1FFF   RAM
+.stack                           256   R/W     0x1000     0x10FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -381,13 +381,13 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg338
 .abs_section_2ae                   2   N/I      0x2AE      0x2AF   .absSeg339
 .abs_section_2be                   2   N/I      0x2BE      0x2BF   .absSeg340
-.bss                               4   R/W     0x2000     0x2003   RAM
-HEAP_SEGMENT                    2000   R/W     0x2004     0x27D3   RAM
+.bss                               4   R/W     0x1100     0x1103   RAM
+HEAP_SEGMENT                    2000   R/W     0x1104     0x18D3   RAM
 .vectSeg341_vect                   2     R     0xFFFE     0xFFFF   .vectSeg341
 
 Summary of section sizes per section type:
 READ_ONLY (R):         23C (dec:      572)
-READ_WRITE (R/W):     17D4 (dec:     6100)
+READ_WRITE (R/W):      8D4 (dec:     2260)
 NO_INIT (N/I):         190 (dec:      400)
 
 *********************************************************************************************
@@ -760,12 +760,12 @@ MODULE:                 -- Start12.c.o --
 - VARIABLES:
      _startupData                              C00B       6       6       3   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          2000       0       0       1               
+     __SEG_END_SSTACK                          1100       0       0       1               
 MODULE:                 -- HEAP.C.o (ansibi.lib) --
 - PROCEDURES:
      _heapcrash_                             308101       C      12       2   .text       
 - VARIABLES:
-     _heap_                                    2004     7D0    2000       1   HEAP_SEGMENT
+     _heap_                                    1104     7D0    2000       1   HEAP_SEGMENT
 MODULE:                 -- STRING.C.o (ansibi.lib) --
 - PROCEDURES:
      strcpy                                  30810D       D      13       4   .text       
@@ -774,8 +774,8 @@ MODULE:                 -- ALLOC.C.o (ansibi.lib) --
 - PROCEDURES:
      malloc                                  30811A      A7     167       4   .text       
 - VARIABLES:
-     heap_end                                  2000       2       2       2   .bss        
-     free_ptr                                  2002       2       2       6   .bss        
+     heap_end                                  1100       2       2       2   .bss        
+     free_ptr                                  1102       2       2       6   .bss        
 
 *********************************************************************************************
 MODULE STATISTIC
@@ -787,7 +787,7 @@ MODULE STATISTIC
   HEAP.C.o (ansibi.lib)                     2000     12      0
   STRING.C.o (ansibi.lib)                      0     13      0
   ALLOC.C.o (ansibi.lib)                       4    167      0
-  other                                     4096     12      2
+  other                                      256     12      2
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
@@ -1831,9 +1831,9 @@ OBJECT LIST SORTED BY ADDRESS
      _CAN4TXDLR                                 2BC       1       1       0   .abs_section_2bc
      _CAN4TXTBPR                                2BD       1       1       0   .abs_section_2bd
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
-     heap_end                                  2000       2       2       2   .bss        
-     free_ptr                                  2002       2       2       6   .bss        
-     _heap_                                    2004     7D0    2000       1   HEAP_SEGMENT
+     heap_end                                  1100       2       2       2   .bss        
+     free_ptr                                  1102       2       2       6   .bss        
+     _heap_                                    1104     7D0    2000       1   HEAP_SEGMENT
      _Startup                                  C000       B      11       0   .init       
      STRING.This.is.a.string.tha.1             C015      28      40       1   .rodata1    
      STRING.This.is.a.string.on..2             C03D      3A      58       1   .rodata1    
