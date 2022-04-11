@@ -76,6 +76,8 @@ void main(void){
   EnableInterrupts
                                                 
   while(1){
+ 
+    SerialOutputString(string_1, &SCI1);
 
     current_character = &string_2[0];
     
