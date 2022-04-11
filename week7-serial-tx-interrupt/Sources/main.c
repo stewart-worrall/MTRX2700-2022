@@ -30,7 +30,7 @@ void SerialInitialiseBasic(SerialPort *serial_port) {
   
   *(serial_port->BaudHigh)=0;
   *(serial_port->BaudLow)=156; 
-  *(serial_port->ControlRegister2) = SCI1CR2_RE_MASK|SCI1CR2_TE_MASK|SCI1CR2_SCTIE_MASK; 
+  *(serial_port->ControlRegister2) = SCI1CR2_RE_MASK|SCI1CR2_TE_MASK|SCI1CR2_TCIE_MASK; 
   *(serial_port->ControlRegister1) = 0x00;
 }   
 
@@ -58,31 +58,32 @@ void SerialOutputString(char *pt, SerialPort *serial_port) {
 interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
 
   if (*(SCI1.StatusRegister) & SCI1SR1_TDRE_MASK && *current_character != 0x00) {
-    SerialOutputChar(*current_character, &SCI1);
-    current_character++;
+    SerialOutputChar(*(current_character++), &SCI1);
+  } 
+  else if (*current_character == 0x00){
+    
+    // string is finished, stop the transmit interrupt from firing
+    *(SCI1.ControlRegister2) &= ~SCI1CR2_TCIE_MASK;
   }
 }      
 
 
-void main(void){  
 
+void main(void){  
+  
   SerialInitialiseBasic(&SCI1);  
 
+  EnableInterrupts
+                                                
   while(1){
-
-    DisableInterrupts
-
-    current_character = &string_1[0];
-    
-    // interrupts are disabled, will send entire string using polling
-    SerialOutputString(current_character, &SCI1);
-    
-    EnableInterrupts
 
     current_character = &string_2[0];
     
+    // enable the transmit mask
+    *(SCI1.ControlRegister2) |= SCI1CR2_TCIE_MASK;
+    
     // interrupts are enabled, only send the first char then the interrupts will send the rest one at a time
-    SerialOutputChar(*current_character, &SCI1);
+    SerialOutputChar(*(current_character++), &SCI1);
     
     while (*current_character != 0x00) {
       // waiting in here until the string has completed sending
