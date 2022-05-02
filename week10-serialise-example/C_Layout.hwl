@@ -1,0 +1,23 @@
+OPEN source 0 0 60 39
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN assembly 60 0 40 31
+Assembly < attributes ADR on,CODE off,ABSADR on,SYMB off,FORMAT Auto,FREEZE off,TOPPC 0x30813A
+OPEN procedure 0 39 60 17
+Procedure < attributes VALUES on,TYPES off
+OPEN register 60 31 40 25
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 60 56 40 22
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0x80
+OPEN data 0 56 60 22
+Data:1 < attributes SCOPE global,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN data 0 78 60 22
+Data:2 < attributes SCOPE local,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN command 60 78 40 22
+Command < attributes CACHESIZE 1000
+OPEN Terminal 60 0 40 56
+Terminal < attributes CACHESIZE 1000
+Terminal < attributes SCI_DEFAULT_TEXT "Redirect Virtual SCI to Serial Port",SCI_CONNECTION 0,1,SCI_CONNECTION 0,2,SCI_CONNECTION 1,2,SCI_CONNECTION 1,3,SCI_CONNECTION 2,1,SCI_CONNECTION 2,3,SCI_CONNECTION 3,1,SCI_CONNECTION 3,2,SCI_PORT COM1,SCI_BAUD  115200,SCI_SHOW_PROTOCOL OFF,SCI_VIRTUAL_IN "Sci1.SerialOutput",SCI_VIRTUAL_OUT "Sci1.SerialInput",SCI_FILENAME_IN "",SCI_FILENAME_OUT ""
+bckcolor 50331647
+font 'Courier New' 22 BLACK
+AUTOSIZE on
+ACTIVATE "Data:2" "Command" "Procedure" "Data:1" "Source" "Register" "Assembly" "Memory" "Terminal"
